@@ -1,22 +1,21 @@
-window.onload = function () {
+window.onload = () => {
+  const errors = document.getElementById('errors')
   if (!navigator.mediaDevices) {
-    // console.log("navigator.mediaDevices not supported.");
+    // console.log("navigator.mediaDevices not supported.")
     errors.innerHTML += `<p>navigator.mediaDevices not supported</p>`
-    return;
+    return
   }
   if (!MediaRecorder) {
     errors.innerHTML += `<p>MediaRecorder not supported</p>`
-    return;
+    return
   }
 
-  const errors = document.getElementById('errors')
-
-  const camera_video = document.getElementById("camera_video");
-  const playback_video = document.getElementById('playback_video');
+  const camera_video = document.getElementById("camera_video")
+  const playback_video = document.getElementById('playback_video')
   const downloadlink = document.getElementById('downloadlink')
 
-  const record_start = document.getElementById("rec_start");
-  const record_stop = document.getElementById("rec_stop");
+  const record_start = document.getElementById("rec_start")
+  const record_stop = document.getElementById("rec_stop")
 
   // カメラ設定
   var constraints = {
@@ -26,7 +25,7 @@ window.onload = function () {
       facingMode: "user"   // フロントカメラ
       // facingMode: { exact: "environment" }  // バックカメラ
     },
-  };
+  }
   // カメラの内容を<vedio>に映る
   navigator.mediaDevices
     .getUserMedia(constraints)
@@ -67,10 +66,10 @@ window.onload = function () {
       errors.innerHTML += `<p>${err.name}: ${err.message}</p>`
     })
 
-  // const photo_canvas = document.getElementById("photo");
-  // const shutter = document.getElementById("shutter");
+  // const photo_canvas = document.getElementById("photo")
+  // const shutter = document.getElementById("shutter")
   // shutter.onclick = (e) => {
   //   const ctx = photo_canvas.getContext("2d")
   //   ctx.drawImage(camera_video, 0, 0, photo_canvas.width, photo_canvas.height)
-  // };
-};
+  // }
+}
