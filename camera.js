@@ -4,6 +4,8 @@ window.onload = function () {
     return;
   }
 
+  const errors = document.getElementById('errors')
+
   const camera_video = document.getElementById("camera_video");
   const playback_video = document.getElementById('playback_video');
   const downloadlink = document.getElementById('downloadlink')
@@ -34,15 +36,18 @@ window.onload = function () {
       record_start.onclick = () => {
         mediaRecorder.start()
         console.log("recorder start", mediaRecorder.state)
+        errors.innerHTML += `<p>recorder start</p>`
       }
 
       record_stop.onclick = () => {
         mediaRecorder.stop()
         console.log("recorder stop", mediaRecorder.state)
+        errors.innerHTML += `<p>recorder stop</p>`
       }
 
       mediaRecorder.ondataavailable = (e) => {
         console.log('e.data.type', e.data.type)
+        errors.innerHTML += `<p>${e.data.type}</p>`
           
         const blob = new Blob([e.data], { type: e.data.type })
         const bloburl = URL.createObjectURL(blob)
@@ -54,6 +59,7 @@ window.onload = function () {
     })
     .catch(function (err) {
       console.log(err.name + ": " + err.message)
+      errors.innerHTML += `<p>${err.name}: ${err.message}</p>`
     })
 
   // const photo_canvas = document.getElementById("photo");
