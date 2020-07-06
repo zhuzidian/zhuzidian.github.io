@@ -5,7 +5,7 @@ window.onload = () => {
     errors.innerHTML += `<p>navigator.mediaDevices not supported</p>`
     return
   }
-  if (!MediaRecorder) {
+  if (!window.MediaRecorder) {
     errors.innerHTML += `<p>MediaRecorder not supported</p>`
     return
   }
