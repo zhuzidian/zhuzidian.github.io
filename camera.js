@@ -1,6 +1,11 @@
 window.onload = function () {
   if (!navigator.mediaDevices) {
-    console.log("navigator.mediaDevices not supported.");
+    // console.log("navigator.mediaDevices not supported.");
+    errors.innerHTML += `<p>navigator.mediaDevices not supported</p>`
+    return;
+  }
+  if (!MediaRecorder) {
+    errors.innerHTML += `<p>MediaRecorder not supported</p>`
     return;
   }
 
