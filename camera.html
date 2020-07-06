@@ -13,19 +13,32 @@
 <body>
 
 <div class="camera">
-  <h3>カメラ</h3>
-  <video id="camera_video"></video>
-
-  <h3>録画再生</h3>
-  <video id="playback_video" controls></video>
-
+  <h3>カメラ / サンプル動画</h3>
+  <div class="camera-container">
+    <video id="camera_video"></video>
+    <video id="sample_video" muted>
+      <source src="./sample.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="controls">
+    サンプル動画
+    <button id="sample_play">再生</button>
+    <button id="sample_pause">停止</button>
+  </div>
   
 
+  <h3>録画再生</h3>
+  <div class="video-container">
+    <video id="playback_video"></video>
+  </div>
+  
   <div class="controls">
+    録画
     <button id="rec_start">開始</button>
     <button id="rec_stop">終了</button>
+    <button id="playback_play">再生</button>
+    <button id="playback_pause">停止</button>
   </div>
-
   <a id="downloadlink" href="">録画ダウンロード</a>
 </div>
 
