@@ -6,7 +6,9 @@ body {
   padding: 0;
 }
 
-
+html {
+  background-color: lightgoldenrodyellow;
+}
 
 .hidden {
   display: none;

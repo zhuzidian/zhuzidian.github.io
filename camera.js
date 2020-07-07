@@ -63,26 +63,26 @@ function main() {
 
       video2Canvas()
 
-      // let mixed_video_stream = new MediaStream()
-      // let media_recorder
+      let mixed_video_stream = new MediaStream()
+      let media_recorder
 
-      // record_start.onclick = () => {
-      //   mixed_video_stream.addTrack(mixed_canvas.captureStream().getTracks()[0])
+      record_start.onclick = () => {
+        mixed_video_stream.addTrack(mixed_canvas.captureStream().getTracks()[0])
         
-      //   media_recorder = new MediaRecorder(mixed_video_stream)
-      //   media_recorder.start();
-      //   media_recorder.ondataavailable = (e) => {
-			// 		var blob_url = URL.createObjectURL(e.data)
-			// 		mixed_video.src = blob_url
-			// 		download_link.download = 'mixed.webm'
-			// 		download_link.href = blob_url
-			// 	}
-      // }
+        media_recorder = new MediaRecorder(mixed_video_stream)
+        media_recorder.start();
+        media_recorder.ondataavailable = (e) => {
+					var blob_url = URL.createObjectURL(e.data)
+					mixed_video.src = blob_url
+					download_link.download = 'mixed.webm'
+					download_link.href = blob_url
+				}
+      }
 
-      // record_stop.onclick = () => {
-			// 	// video.pause();
-			// 	media_recorder.stop()
-			// }
+      record_stop.onclick = () => {
+				// video.pause();
+				media_recorder.stop()
+			}
     })
 
   const video2Canvas = () => {
@@ -105,7 +105,7 @@ function main() {
     for (var i = 0; i < imageData.data.length; i += 4) {
       const r = imageData.data[i];
       const g = imageData.data[i + 1];
-      const b = imageData.data[i + 2];      
+      const b = imageData.data[i + 2];
       // 閾値
       const condition = r < 80 && g > 200 && b < 80;
       if (condition) {
