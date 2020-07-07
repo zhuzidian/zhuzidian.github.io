@@ -7,52 +7,34 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0" />
 <title>カメラサンプル</title>
-<link rel="stylesheet" href="camera.css">
+<link href="camera.css" rel="stylesheet">
 <script src="camera.js"></script>
 </head>
 <body>
 
-<div class="camera">
-  <h3>カメラ / サンプル動画</h3>
-  <div class="camera-container">
-    <video id="camera_video"></video>
-    <video id="sample_video" muted>
-      <source src="./sample.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="controls">
-    サンプル動画
-    <button id="sample_play">再生</button>
-    <button id="sample_pause">停止</button>
-  </div>
-  
-
-  <h3>録画再生</h3>
-  <div class="video-container">
-    <video id="playback_video"></video>
-  </div>
-  
+<div class="camera-container">
+  <canvas id="mixed_canvas" width="300" height="200"></canvas>
   <div class="controls">
     録画
-    <button id="rec_start">開始</button>
-    <button id="rec_stop">終了</button>
-    <button id="playback_play">再生</button>
-    <button id="playback_pause">停止</button>
+    <button id="record_start">開始</button>
+    <button id="record_stop">終了</button>
   </div>
-  <a id="downloadlink" href="">録画ダウンロード</a>
 </div>
 
-<hr>
-<div id="errors">
-
+<div class="mixed-container">
+  <video controls id="mixed_video" width="300" height="200" controls></video>
+  <div class="controls">
+    <a id="download_link">ダウンロード</a>
+  </div>
 </div>
 
+<div id="log">
+</div>
 
-<!-- <div class="photo">
-  <h2>撮影</h2>
-  <canvas id="photo"></canvas>
-  <button id="shutter">shutter</button>
-</div> -->
+<div class="hidden">
+  <video id="camera_video" width="150" height="100" controls></video>
+  <video id="sample_video" width="128" height="72" muted autoplay></video>
+</div>
 
 </body>
 </html>

@@ -1,47 +1,18 @@
 @charset "utf-8";
 
-h3 {
+html,
+body {
   margin: 0;
+  padding: 0;
 }
 
-video, canvas {
-  display: block;
-}
 
-.camera-container {
-  position: relative;
-  width: 300px;
-  height: 200px;
-}
-#camera_video {
-  width: 300px;
-  height: 200px;
 
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-#sample_video {
-  width: 150px;
-
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
-
-#playback_video {
-  width: 300px;
-  height: 200px;
+.hidden {
+  display: none;
 }
 
 .controls {
   margin-top: 10px;
   height: 30px;
-}
-
-#errors {
-  margin-top: 10px;
-}
-#errors p {
-  margin: 0;
 }
