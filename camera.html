@@ -13,7 +13,7 @@
 <body>
 
 <div class="camera-container">
-  <canvas id="mixed_canvas" width="300" height="200"></canvas>
+  <canvas id="mixed_canvas" width="320" height="180"></canvas>
   <div class="controls">
     録画
     <button id="record_start">開始</button>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="mixed-container">
-  <video controls id="mixed_video" width="300" height="200" controls></video>
+  <video controls id="mixed_video" width="320" height="180" controls></video>
   <div class="controls">
     <a id="download_link">ダウンロード</a>
   </div>
@@ -31,9 +31,12 @@
 <div id="log">
 </div>
 
-<div class="hidden">
-  <video id="camera_video" width="150" height="100" controls></video>
-  <video id="sample_video" width="128" height="72" muted autoplay></video>
+
+<div class="hidden1">
+  <hr>
+  <p>以下は非表示</p>
+  <video id="camera_video" width="160" height="90" controls></video>
+  <video id="sample_video" width="160" height="90" muted autoplay loop></video>
 </div>
 
 </body>
