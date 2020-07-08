@@ -12,28 +12,29 @@
 </head>
 <body>
 
-<div class="camera-container">
-  <canvas id="mixed_canvas" width="320" height="180"></canvas>
-  <div class="controls">
-    録画
-    <button id="record_start">開始</button>
-    <button id="record_stop">終了</button>
+  <div style="display: block;">
+    <p>オリジナル</p>
+    <video id="camera_video" width="160" height="90" controls></video>
+    <video id="sample_video" width="160" height="90" muted autoplay loop></video>
+    <hr>
   </div>
-</div>
 
-<div class="mixed-container">
-  <video controls id="mixed_video" width="320" height="180" controls></video>
-  <div class="controls">
-    <a id="download_link">ダウンロード</a>
+  <div class="camera-container">
+    <p>合成、プレビュー</p>
+    <canvas id="mixed_canvas" width="320" height="180"></canvas>
+    <div class="controls">
+      録画
+      <button id="record_start">開始</button>
+      <button id="record_stop">終了</button>
+    </div>
   </div>
-</div>
 
-<div style="display: none;">
-  <hr>
-  <p>以下は非表示</p>
-  <video id="camera_video" width="160" height="90" controls></video>
-  <video id="sample_video" width="160" height="90" muted autoplay loop></video>
-</div>
+  <div class="mixed-container">
+    <video controls id="mixed_video" width="320" height="180" controls></video>
+    <div class="controls">
+      <a id="download_link">ダウンロード</a>
+    </div>
+  </div>
 
 </body>
 </html>

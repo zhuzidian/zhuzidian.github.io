@@ -69,7 +69,7 @@ const main = () => {
         sample_video.play()
       }
       
-      if (sample === 'rem') {
+      if (['rem', 'dancing'].includes(sample)) {
         mixVideo1()
       } else {
         mixVideo2()
