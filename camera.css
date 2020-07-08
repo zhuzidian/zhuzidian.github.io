@@ -10,10 +10,6 @@ html {
   background-color: lightgoldenrodyellow;
 }
 
-.hidden {
-  display: none;
-}
-
 .controls {
   margin-top: 10px;
   height: 30px;

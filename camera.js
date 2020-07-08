@@ -1,3 +1,9 @@
+let sample
+
+// 消す色と閾値
+let chroma_key_rgb = { r: 0, g: 255, b: 0 }
+let colorDistance = 80
+
 window.onload = () => {
   // console.log('location.hostname', location.hostname)
   // if (location.hostname !== 'localhost') {
@@ -20,10 +26,14 @@ window.onload = () => {
     return
   }
 
+  const urlParams = new URLSearchParams(window.location.search)
+  sample = urlParams.get('sample')
+  if (!sample) sample = 'rem'
+
   main()
 }
 
-function main() {
+const main = () => {
   let camera_video = document.getElementById('camera_video')
   let sample_video = document.getElementById('sample_video')
 
@@ -35,8 +45,6 @@ function main() {
 
   let record_start = document.getElementById('record_start')
   let record_stop = document.getElementById('record_stop')
-
-  let camera_stream
 
   let constraints = {
     // audio: { echoCancellation: true },
@@ -56,12 +64,16 @@ function main() {
         camera_video.play()
       }
 
-      sample_video.src = "missile.mp4"
+      sample_video.src = sample + '.mp4'
       sample_video.onloadedmetadata = () => {
         sample_video.play()
       }
-
-      video2Canvas()
+      
+      if (sample === 'rem') {
+        mixVideo1()
+      } else {
+        mixVideo2()
+      }
 
       let mixed_video_stream = new MediaStream()
       let media_recorder
@@ -85,17 +97,34 @@ function main() {
 			}
     })
 
-  const video2Canvas = () => {
+  const mixVideo1 = () => {
     // 320*180
+    mixed_context.globalCompositeOperation = 'source-over'
     mixed_context.drawImage(camera_video, 0, 0)
+
     // 160*90
-    mixed_context.drawImage(sample_video, 0, 0, sample_video.width, sample_video.height)
+    mixed_context.globalCompositeOperation = 'screen'
+    // mixed_context.globalCompositeOperation = 'overlay'
+    // mixed_context.globalCompositeOperation = 'lighter'
+    mixed_context.drawImage(sample_video, 0, 0, mixed_canvas.width, mixed_canvas.height)
+
+    window.requestAnimationFrame(mixVideo1)
+  }
+
+  const mixVideo2 = () => {
+    mixed_context.globalCompositeOperation = 'source-over'
+    mixed_context.drawImage(sample_video, 0, 0, mixed_canvas.width, mixed_canvas.height)
     chromaKey()
-    requestAnimationFrame(video2Canvas)
+
+    // 320*180
+    mixed_context.globalCompositeOperation = 'destination-over'
+    mixed_context.drawImage(camera_video, 0, 0)
+
+    window.requestAnimationFrame(mixVideo2)
   }
 
   var chromaKey = function () {
-    var imageData = mixed_context.getImageData(0, 0, sample_video.width, sample_video.height)
+    var imageData = mixed_context.getImageData(0, 0, mixed_canvas.width, mixed_canvas.height)
 
     // dataはUint8ClampedArray
     // 長さはcanvasの width * height * 4(r,g,b,a)
@@ -139,6 +168,3 @@ function main() {
   };
 }
 
-// 消す色と閾値
-var chroma_key_rgb = { r: 0, g: 255, b: 0 }
-var colorDistance = 100
