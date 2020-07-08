@@ -139,6 +139,10 @@ const main = () => {
       const condition = r < 80 && g > 200 && b < 80;
       if (condition) {
         imageData.data[i + 3] = 0;
+      } else {
+        if (sample === 'fish') {
+          imageData.data[i + 3] = 128
+        }
       }
       // var target_rgb = {
       //   r: imageData.data[i],
