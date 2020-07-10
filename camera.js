@@ -4,6 +4,13 @@ let sample
 let chroma_key_rgb = { r: 0, g: 255, b: 0 }
 let colorDistance = 80
 
+// mixed width height
+let mixed_sample_video_width = 320
+let mixed_sample_video_height = 180
+
+let $larger
+let $smaller
+
 window.onload = () => {
   // console.log('location.hostname', location.hostname)
   // if (location.hostname !== 'localhost') {
@@ -45,6 +52,23 @@ const main = () => {
 
   let record_start = document.getElementById('record_start')
   let record_stop = document.getElementById('record_stop')
+
+  $larger = document.querySelector('#larger')
+  $larger.onclick = () => {
+    mixed_sample_video_width += 32
+    mixed_sample_video_height += 18
+  }
+
+  $smaller = document.querySelector('#smaller')
+  $smaller.onclick = () => {
+    if (mixed_sample_video_width > 32) {
+      mixed_sample_video_width -= 32
+    }
+    
+    if (mixed_sample_video_height > 18) {
+      mixed_sample_video_height -= 18
+    }
+  }
 
   let constraints = {
     // audio: { echoCancellation: true },
@@ -106,14 +130,27 @@ const main = () => {
     mixed_context.globalCompositeOperation = 'screen'
     // mixed_context.globalCompositeOperation = 'overlay'
     // mixed_context.globalCompositeOperation = 'lighter'
-    mixed_context.drawImage(sample_video, 0, 0, mixed_canvas.width, mixed_canvas.height)
+    // mixed_context.drawImage(sample_video, 0, 0, mixed_canvas.width, mixed_canvas.height)
+    mixed_context.drawImage(
+      sample_video, 
+      (320 - mixed_sample_video_width) / 2,
+      (180 - mixed_sample_video_height) / 2,
+      mixed_sample_video_width,
+      mixed_sample_video_height
+    )
 
     window.requestAnimationFrame(mixVideo1)
   }
 
   const mixVideo2 = () => {
-    mixed_context.globalCompositeOperation = 'source-over'
-    mixed_context.drawImage(sample_video, 0, 0, mixed_canvas.width, mixed_canvas.height)
+    mixed_context.globalCompositeOperation = 'source-in'
+    mixed_context.drawImage(
+      sample_video, 
+      (320 - mixed_sample_video_width) / 2,
+      (180 - mixed_sample_video_height) / 2,
+      mixed_sample_video_width,
+      mixed_sample_video_height
+    )
     chromaKey()
 
     // 320*180
@@ -124,7 +161,14 @@ const main = () => {
   }
 
   var chromaKey = function () {
-    var imageData = mixed_context.getImageData(0, 0, mixed_canvas.width, mixed_canvas.height)
+    var imageData = mixed_context.getImageData(
+      (320 - mixed_sample_video_width) / 2,
+      (180 - mixed_sample_video_height) / 2,
+      mixed_sample_video_width,
+      mixed_sample_video_height
+    )
+    // console.log(imageData);
+    
 
     // dataはUint8ClampedArray
     // 長さはcanvasの width * height * 4(r,g,b,a)
@@ -159,7 +203,11 @@ const main = () => {
       // }
     }
     
-    mixed_context.putImageData(imageData, 0, 0);
+    mixed_context.putImageData(
+      imageData, 
+      (320 - mixed_sample_video_width) / 2,
+      (180 - mixed_sample_video_height) / 2
+    );
   };
   
   var getColorDistance = function (rgb1, rgb2) {
