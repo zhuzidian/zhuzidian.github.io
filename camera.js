@@ -11,6 +11,16 @@ let mixed_sample_video_height = 180
 let $larger
 let $smaller
 
+let alpha = 255
+
+function onAlphaUp(e) {
+  if (alpha < 255) alpha += 32;
+}
+
+function onAlphaDown(e) {
+  if (alpha > 0) alpha -= 32;
+}
+
 window.onload = () => {
   // console.log('location.hostname', location.hostname)
   // if (location.hostname !== 'localhost') {
@@ -183,10 +193,8 @@ const main = () => {
       const condition = r < 80 && g > 200 && b < 80;
       if (condition) {
         imageData.data[i + 3] = 0;
-      } else {
-        if (sample === 'fish') {
-          imageData.data[i + 3] = 128
-        }
+      } else if (['fish', 'missile'].includes(sample)) {
+        imageData.data[i + 3] = alpha
       }
       // var target_rgb = {
       //   r: imageData.data[i],
