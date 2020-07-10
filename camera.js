@@ -13,12 +13,28 @@ let $smaller
 
 let alpha = 255
 
-function onAlphaUp(e) {
+function onAlphaUp() {
+  if (alpha > 0) alpha -= 32;
+}
+
+function onAlphaDown() {
   if (alpha < 255) alpha += 32;
 }
 
-function onAlphaDown(e) {
-  if (alpha > 0) alpha -= 32;
+
+function onsizeup() {
+  mixed_sample_video_width += 32
+  mixed_sample_video_height += 18
+}
+
+function onsizedown() {
+  if (mixed_sample_video_width > 32) {
+    mixed_sample_video_width -= 32
+  }
+  
+  if (mixed_sample_video_height > 18) {
+    mixed_sample_video_height -= 18
+  }
 }
 
 window.onload = () => {
@@ -62,23 +78,6 @@ const main = () => {
 
   let record_start = document.getElementById('record_start')
   let record_stop = document.getElementById('record_stop')
-
-  $larger = document.querySelector('#larger')
-  $larger.onclick = () => {
-    mixed_sample_video_width += 32
-    mixed_sample_video_height += 18
-  }
-
-  $smaller = document.querySelector('#smaller')
-  $smaller.onclick = () => {
-    if (mixed_sample_video_width > 32) {
-      mixed_sample_video_width -= 32
-    }
-    
-    if (mixed_sample_video_height > 18) {
-      mixed_sample_video_height -= 18
-    }
-  }
 
   let constraints = {
     // audio: { echoCancellation: true },
