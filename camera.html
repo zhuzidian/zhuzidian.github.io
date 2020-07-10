@@ -22,20 +22,21 @@
   <div class="camera-container">
     <p>合成、プレビュー</p>
     <canvas id="mixed_canvas" width="320" height="180"></canvas>
-    <div class="controls">
-      <span>サンプル画像</span>
-      <button id="sizeup" onclick="onsizeup()">拡大</button>
-      <button id="sizedown" onclick="onsizedown()">縮小</button>
-
-      <span>透明</span>
-      <button id="alpha-up" onclick="onAlphaUp()">+</button>
-      <button id="alpha-down" onclick="onAlphaDown()">-</button>
-    </div>
-    <div class="controls">
-      録画
+    <p>
+      <span>手本動画サイズ</span>
+      <button id="sizeUp" onclick="onSizeUp()">+</button>
+      <button id="sizeDown" onclick="onSizeDown()">-</button>
+    </p>
+    <p>
+      <span>手本動画透明度</span>
+      <button id="alphaUp" onclick="onAlphaUp()">+</button>
+      <button id="alphaDown" onclick="onAlphaDown()">-</button>
+    </p>
+    <p>
+      <span>録画</span>
       <button id="record_start">開始</button>
       <button id="record_stop">終了</button>
-    </div>
+    </p>
   </div>
 
   <div class="mixed-container">

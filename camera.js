@@ -8,9 +8,6 @@ let colorDistance = 80
 let mixed_sample_video_width = 320
 let mixed_sample_video_height = 180
 
-let $larger
-let $smaller
-
 let alpha = 255
 
 function onAlphaUp() {
@@ -22,12 +19,12 @@ function onAlphaDown() {
 }
 
 
-function onsizeup() {
+function onSizeUp() {
   mixed_sample_video_width += 32
   mixed_sample_video_height += 18
 }
 
-function onsizedown() {
+function onSizeDown() {
   if (mixed_sample_video_width > 32) {
     mixed_sample_video_width -= 32
   }
