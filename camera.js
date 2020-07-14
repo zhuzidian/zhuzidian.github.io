@@ -68,6 +68,9 @@ const main = () => {
   let sample_video = document.getElementById('sample_video')
 
   let mixed_canvas = document.getElementById('mixed_canvas')
+  // mixed_canvas.style.transform = 'rotateY(180deg)';
+  mixed_canvas.style.transform = 'scaleX(-1)';
+
   let mixed_context = mixed_canvas.getContext('2d')
   
   let mixed_video = document.getElementById('mixed_video')
