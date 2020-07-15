@@ -69,7 +69,7 @@ const main = () => {
 
   let mixed_canvas = document.getElementById('mixed_canvas')
   // mixed_canvas.style.transform = 'rotateY(180deg)';
-  mixed_canvas.style.transform = 'scaleX(-1)';
+  // mixed_canvas.style.transform = 'scaleX(-1)';
 
   let mixed_context = mixed_canvas.getContext('2d')
   
