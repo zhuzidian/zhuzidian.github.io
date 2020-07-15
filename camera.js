@@ -72,6 +72,7 @@ const main = () => {
   // mixed_canvas.style.transform = 'scaleX(-1)';
 
   let mixed_context = mixed_canvas.getContext('2d')
+  mixed_context.scale(-1, 1);
   
   let mixed_video = document.getElementById('mixed_video')
   let download_link = document.getElementById('download_link')
@@ -133,7 +134,13 @@ const main = () => {
   const mixVideo1 = () => {
     // 320*180
     mixed_context.globalCompositeOperation = 'source-over'
-    mixed_context.drawImage(camera_video, 0, 0)
+    mixed_context.drawImage(
+      camera_video,
+      0,
+      0,
+      -mixed_sample_video_width,
+      mixed_sample_video_height
+    )
 
     // 160*90
     mixed_context.globalCompositeOperation = 'screen'
@@ -144,7 +151,7 @@ const main = () => {
       sample_video, 
       (320 - mixed_sample_video_width) / 2,
       (180 - mixed_sample_video_height) / 2,
-      mixed_sample_video_width,
+      -mixed_sample_video_width,
       mixed_sample_video_height
     )
 
@@ -157,14 +164,20 @@ const main = () => {
       sample_video, 
       (320 - mixed_sample_video_width) / 2,
       (180 - mixed_sample_video_height) / 2,
-      mixed_sample_video_width,
+      -mixed_sample_video_width,
       mixed_sample_video_height
     )
     chromaKey()
 
     // 320*180
     mixed_context.globalCompositeOperation = 'destination-over'
-    mixed_context.drawImage(camera_video, 0, 0)
+    mixed_context.drawImage(
+      camera_video,
+      0,
+      0,
+      -mixed_sample_video_width,
+      mixed_sample_video_height
+    )
 
     window.requestAnimationFrame(mixVideo2)
   }
